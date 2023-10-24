@@ -5,33 +5,44 @@
 function createCalendar () {
 
     //  add for loop to create text blocks with times
-  for (i=9, i<=17, i++) {
+  for (i=9; i<=17; i++) { 
     
     var timeBlock = $('<div>');
 
-    // add classes to time block
+    // add classes & id's to time block
 
-    // create times variable
+    timeBlock.addClass('row time-block');
+    timeBlock.attr('hour-' +i);
 
-    // add classes to times variable
+    // create times text variable
 
-    // if statement to determine AM or PM
+    var timeText = $('<div>');
+
+    // add classes & id'd to times text variable
+    timeText.addClass('col-2 col-md-1 hour text-center py-3');
+
+  // if statement to determine AM or PM
 
     // add times to time block
 
     // create text area
 
-    // add classes to text area
+    var textArea = $('<textarea>');
+
+    // add classes & id's to text area
+
+    textArea.addClass('col-8 col-md-10 description');
+    textArea.attr('rows',3);
 
     // add text area to time block
 
     // add button icon
 
-    // add classes to button icon
+    // add classes & id's to button icon
 
     // add button itself
 
-    // add classes to button
+    // add classes & id's to button
 
     // add timeblock to main container
 
@@ -39,13 +50,9 @@ function createCalendar () {
 
     }
 
-
-
-
-
 }
 
-
+createCalendar();
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
