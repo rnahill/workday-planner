@@ -1,6 +1,52 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+function createCalendar () {
+
+    //  add for loop to create text blocks with times
+  for (i=9, i<=17, i++) {
+    
+    var timeBlock = $('<div>');
+
+    // add classes to time block
+
+    // create times variable
+
+    // add classes to times variable
+
+    // if statement to determine AM or PM
+
+    // add times to time block
+
+    // create text area
+
+    // add classes to text area
+
+    // add text area to time block
+
+    // add button icon
+
+    // add classes to button icon
+
+    // add button itself
+
+    // add classes to button
+
+    // add timeblock to main container
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
