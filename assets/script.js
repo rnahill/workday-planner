@@ -3,16 +3,23 @@
 // in the html.
 
 function createCalendar () {
+  
+
+  // create calendar container
+
+  var calendarContainer = $('<div>');
+  $('body').append(calendarContainer);
 
     //  add for loop to create text blocks with times
-  for (i=9; i<=17; i++) { 
+  
+    for (i=9; i<=17; i++) { 
     
     var timeBlock = $('<div>');
 
     // add classes & id's to time block
 
     timeBlock.addClass('row time-block');
-    timeBlock.attr('hour-' +i);
+    timeBlock.attr('Hour-' + i);
 
     // create times text variable
 
@@ -22,8 +29,16 @@ function createCalendar () {
     timeText.addClass('col-2 col-md-1 hour text-center py-3');
 
   // if statement to determine AM or PM
-
+    if (i < 12) {
+      timeText.text(i + 'AM');
+    } else if (i === 12) {
+      timeText.text(i + 'PM');
+    } else {
+      timeText.text(i - 12 + 'PM');
+    }
     // add times to time block
+
+    timeBlock.append(timeText);
 
     // create text area
 
@@ -34,19 +49,40 @@ function createCalendar () {
     textArea.addClass('col-8 col-md-10 description');
     textArea.attr('rows',3);
 
-    // add text area to time block
+    // append textArea to timeBlock
 
+    timeBlock.append(textArea);
+
+    // add button
+
+    var saveBtn = $('<button>');
+
+     // add classes & id's to button
+
+    saveBtn.addClass('btn saveBtn col-2 col-md-1');
+    saveBtn.attr('aria-label', 'save')
+
+    // append button to timeBlock
+
+    timeBlock.append(saveBtn);
+   
     // add button icon
 
+    var btnIcon = $('<i>');
+
+
     // add classes & id's to button icon
+    btnIcon.addClass('fas fa-save');
+    btnIcon.attr('aria-hidden', 'true');
 
-    // add button itself
 
-    // add classes & id's to button
+    // append icon to button
+
+    saveBtn.append(btnIcon);
 
     // add timeblock to main container
 
-
+    calendarContainer.append(timeBlock);
 
     }
 
