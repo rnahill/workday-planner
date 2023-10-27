@@ -61,7 +61,9 @@ function createCalendar () {
 
 }
 
+// Run createCalendar function so calendar appears on the page.
 createCalendar();
+
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -70,7 +72,20 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+  
+  var timeBtnEl = $('.saveBtn');
+
+  timeBtnEl.on("click", function(){
+    
+    var savedData = $('.description').val();
+    localStorage.setItem("savedData", savedData);
+    alert("Data saved");
+
+  })
+
+
+
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
