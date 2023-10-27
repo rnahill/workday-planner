@@ -10,13 +10,13 @@ function createCalendar () {
   var calendarContainer = $('<div>');
   $('body').append(calendarContainer);
 
-    //  Used a for loop to create time blocks. Added classes and attributes to time blocks. Then used an if statement and a text variable to determine whether or not the text on the timeblock should say AM or PM, and then added said text.
+//  Used a for loop to create time blocks. Added classes and attributes to time blocks. Then used an if statement and a text variable to determine whether or not the text on the timeblock should say AM or PM, and then added said text.
   
     for (i=9; i<=17; i++) { 
     
     var timeBlock = $('<div>');
     timeBlock.addClass('row time-block');
-    timeBlock.attr('Hour-' + i);
+    timeBlock.attr('id', 'hour-' + i);
 
     var timeText = $('<div>');
     timeText.addClass('col-2 col-md-1 hour text-center py-3');
@@ -31,7 +31,7 @@ function createCalendar () {
     
     timeBlock.append(timeText);
 
-    // Created text area variable and added classes/attributes. Added a text area to each time block.
+// Created text area variable and added classes/attributes. Added a text area to each time block.
 
     var textArea = $('<textarea>');
     textArea.addClass('col-8 col-md-10 description');
@@ -39,7 +39,7 @@ function createCalendar () {
 
     timeBlock.append(textArea);
 
-    // Created button and added classes/attributes. Added a button to each time block and added the button icon to each button.
+// Created button and added classes/attributes. Added a button to each time block and added the button icon to each button.
 
     var saveBtn = $('<button>');
     saveBtn.addClass('btn saveBtn col-2 col-md-1');
@@ -53,7 +53,7 @@ function createCalendar () {
 
     saveBtn.append(btnIcon);
 
-    // Added time blocks to calendar container.
+// Added time blocks to calendar container.
 
     calendarContainer.append(timeBlock);
 
@@ -64,79 +64,66 @@ function createCalendar () {
 // Run createCalendar function so calendar appears on the page.
 createCalendar();
 
- // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
 
+
+// Created an .on click function to save the data entered into the textarea.  
   $(function () {
   
   var timeBtnEl = $('.saveBtn');
 
   timeBtnEl.on("click", function(){
-    
+  
+// Used .parent(); to access the text area, aquired the textarea block by id, and created a variable to find the text entered into the text area.
+
     var chosenTimeBlock = $(this).parent();
     
-    var timeBlockId = chosenTimeBlock.attr('Hour-' + i);
+    var timeBlockId = chosenTimeBlock.attr('hour-' + i);
 
     var textToStore = chosenTimeBlock.find('.description').val();
 
+// Created an object to store what was entered into the textbox, then used localStorage to actually store the data into the browser along with using JSON.stringify to turn the data into a string.
+   
     var dataToStore = {
       text: textToStore
     };
 
     localStorage.setItem(timeBlockId, JSON.stringify(dataToStore));
     
-  }
-    )
-      }
-        )
+  })
+      
+// Added past, present, and future classes to each time block.
 
+  var currentHour = parseInt(dayjs().format("H"));
+  
+  for (i=9; i<=17; i++) { 
 
-  //   if (localStorage.getItem(timeBlockId) !== null) {
-  //     // Data is stored in localStorage with the key 'yourKey'
-  //     // You can access and use it here
-  //     var storedData = localStorage.getItem(timeBlockId);
-  //     console.log('Data is stored: ' + storedData);
-  //   } else {
-  //     // Data is not stored in localStorage with the key 'yourKey'
-  //     console.log('No data stored with the key timeBlockID');
-  //   }
-  // })
-
-
- 
-
-
-
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
+    var timePhase = $('#hour-' + i);
         
+      if (i < currentHour) {
+        timePhase.addClass('past');
+      } 
+      else if (currentHour === i){
+        timePhase.addClass('present'); 
+      }
+      else {
+        timePhase.addClass('future');
+      }
 
+      }
+  
+//Code for getting the inputted text out of local storage.
 
+  for (i=9; i<=17; i++) { 
 
+    var blockId = "hour-" +i;
+    var textInBlock = JSON.parse(localStorage.getItem(blockId));
+  }    
 
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+// Added current day to header.
 
+  var currentDay = dayjs().format("MMM / DD / YYYY");
 
+  $('#currentDay').text(currentDay);
 
-// From homework setup
-// check day.js website - format section - advanced format for current time in military time
-// dayjs().format("YYYY") - would return 2023
-
-// with save buttons, can save to different local storage boxes or make a big array
-// add "Appointment added to local storage"
-
-// if using get item use set item
-// render function right away
-// INIT function
+}
+);
