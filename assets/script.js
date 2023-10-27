@@ -5,30 +5,22 @@
 function createCalendar () {
   
 
-  // create calendar container
+  // Calendar container
 
   var calendarContainer = $('<div>');
   $('body').append(calendarContainer);
 
-    //  add for loop to create text blocks with times
+    //  Used a for loop to create time blocks. Added classes and attributes to time blocks. Then used an if statement and a text variable to determine whether or not the text on the timeblock should say AM or PM, and then added said text.
   
     for (i=9; i<=17; i++) { 
     
     var timeBlock = $('<div>');
-
-    // add classes & id's to time block
-
     timeBlock.addClass('row time-block');
     timeBlock.attr('Hour-' + i);
 
-    // create times text variable
-
     var timeText = $('<div>');
-
-    // add classes & id'd to times text variable
     timeText.addClass('col-2 col-md-1 hour text-center py-3');
 
-  // if statement to determine AM or PM
     if (i < 12) {
       timeText.text(i + 'AM');
     } else if (i === 12) {
@@ -36,51 +28,32 @@ function createCalendar () {
     } else {
       timeText.text(i - 12 + 'PM');
     }
-    // add times to time block
-
+    
     timeBlock.append(timeText);
 
-    // create text area
+    // Created text area variable and added classes/attributes. Added a text area to each time block.
 
     var textArea = $('<textarea>');
-
-    // add classes & id's to text area
-
     textArea.addClass('col-8 col-md-10 description');
     textArea.attr('rows',3);
 
-    // append textArea to timeBlock
-
     timeBlock.append(textArea);
 
-    // add button
+    // Created button and added classes/attributes. Added a button to each time block and added the button icon to each button.
 
     var saveBtn = $('<button>');
-
-     // add classes & id's to button
-
     saveBtn.addClass('btn saveBtn col-2 col-md-1');
     saveBtn.attr('aria-label', 'save')
 
-    // append button to timeBlock
-
     timeBlock.append(saveBtn);
    
-    // add button icon
-
     var btnIcon = $('<i>');
-
-
-    // add classes & id's to button icon
     btnIcon.addClass('fas fa-save');
     btnIcon.attr('aria-hidden', 'true');
 
-
-    // append icon to button
-
     saveBtn.append(btnIcon);
 
-    // add timeblock to main container
+    // Added time blocks to calendar container.
 
     calendarContainer.append(timeBlock);
 
@@ -103,6 +76,11 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+        
+
+
+
+
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
