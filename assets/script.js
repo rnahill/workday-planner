@@ -57,7 +57,6 @@ function createCalendar () {
 
     calendarContainer.append(timeBlock);
 
-
     }
 
 }
@@ -90,7 +89,10 @@ createCalendar();
 
     localStorage.setItem(timeBlockId, JSON.stringify(dataToStore));
     
-  )}
+  }
+    )
+      }
+        )
 
 
   //   if (localStorage.getItem(timeBlockId) !== null) {
@@ -125,7 +127,7 @@ createCalendar();
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+
 
 
 // From homework setup
